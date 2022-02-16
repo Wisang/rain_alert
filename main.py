@@ -1,15 +1,14 @@
+import os
 import requests
 from twilio.rest import Client
 
 latitude = 37.566536
 longitude = 126.977966
-api_key = "0ac6385b09dc84bdc71c40aa28f89a72"
+api_key = os.environ.get('')
 
 account_sid = "AC5d5d1d3bed511b084991b20279367956"
-auth_token = "4b68fbec0fab46b8651caa0189a620f6"
+auth_token = os.environ.get('')
 phone_number = "+18596952590"
-
-
 
 parameter = {
     "lat": latitude,
@@ -32,7 +31,7 @@ for hour in twelve_hour_data:
     if hour["weather"][0]["id"] < 700:
         need_to_bring_umbrella = True
 
-if need_to_bring_umbrella:
+if True: #need_to_bring_umbrella:
     client = Client(account_sid, auth_token)
     message = client.messages \
         .create(
